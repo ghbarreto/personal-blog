@@ -1,17 +1,20 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import axios from 'axios';
 
 import * as Styled from '../styles';
 import Landing from '../components/Landing/index';
 import { PostContext } from '../context/PostContext';
+import { bgColor } from '../styles/utilities';
 
 interface Values {
-  value: []
+  value: [];
 }
 
 const Home: NextPage<Values> = ({ value }) => {
   const { addingPosts } = useContext(PostContext);
+  const [hover, setHover] = useState<boolean>(false);
 
   useEffect(() => {
     addingPosts(value);
@@ -26,10 +29,13 @@ const Home: NextPage<Values> = ({ value }) => {
       </Head>
       <Styled.Container>
         <Styled.Button
-          hoverBg={'#222222'}
+          onMouseEnter={() => setHover(true)}
+          onMouseLeave={() => setHover(false)}
+          bgColor={hover ? bgColor : 'transparent'}
           fontSize={'26px'}
-          paddingLeft={'120px'}
+          paddingLeft={'250px'}
           margin={'-100px'}
+          color={hover ? 'white' : bgColor}
         >
           <Styled.Tags fontSize={'29px'}>《&#123;</Styled.Tags>Portfolio
           <Styled.Tags fontSize={'29px'}>&#125;</Styled.Tags>
@@ -43,10 +49,10 @@ const Home: NextPage<Values> = ({ value }) => {
 };
 
 Home.getInitialProps = async () => {
-  const res = await fetch('http://localhost:3001/api/fetch_posts');
+  const { data } = await axios.get('http://localhost:3002/api/fetch_posts');
 
   return {
-    value: await res.json(),
+    value: data,
   };
 };
 

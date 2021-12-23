@@ -33,7 +33,6 @@ export const Button = styled.a<ButtonProps>`
   margin-top: ${props => props.marginTop || undefined}
 
   &:hover {
-    background-color: ${props => props.hoverBg || null};
     cursor: ${props => props.hoverBg && 'pointer'};
     text-align: center;
   }

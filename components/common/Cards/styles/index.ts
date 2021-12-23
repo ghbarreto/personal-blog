@@ -7,6 +7,7 @@ interface CardsColumn {
 
 interface Tags extends CardsColumn {
   color?: string;
+  hoverColor?: string;
 }
 
 export const Cards = styled.div`
@@ -52,13 +53,23 @@ export const Categories = styled.div`
   margin-left: 10%;
   display: flex;
   margin-top: -15px;
-`
+ 
+`;
 export const CategoriesButton = styled.div<Tags>`
   margin-right: 15px;
-  font-size: 18px;
-  padding: 10px;
+  font-size: 15px;
+  padding: 10px 20px;
+  text-transform: uppercase;
+  font-weight: 600;
   margin-bottom: 50px;
   color: ${bgColor};
   border-radius: 120px;
-  background-color: ${props => props.bgColor || null}
-`
+  background-color: ${props => props.bgColor || null};
+
+  &:hover {
+    color: ${props => props.hoverColor || null};
+    background-color: ${bgColor};
+    transition: .2s background-color;
+    cursor: pointer;
+  }
+`;

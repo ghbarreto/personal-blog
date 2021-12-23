@@ -1,6 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next';
-import Posts from '../../lib/models/posts.models';
+import posts from '../../posts/postList.json'
 
 type Data = {
   name: string;
@@ -11,8 +11,7 @@ export default async function handler(
   res: NextApiResponse<Data>
 ) {
   if (req.method === 'GET') {
-    const response = await Posts.find().limit(50);
-    res.json(response);
+    res.json(posts);
   } else {
     return;
   }

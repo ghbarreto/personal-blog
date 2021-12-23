@@ -11,7 +11,7 @@ interface Post {
 }
 
 const Cards: React.FC = () => {
-  const { posts } = useContext(PostContext);
+  const { posts, selectCategory } = useContext(PostContext);
 
   const helperBackground = (i: number) => {
     switch (i) {
@@ -37,12 +37,9 @@ const Cards: React.FC = () => {
   
   return (
     <Local.Cards>
-      {_.map(posts, (post: Post, index:Number) => {
+      {_.map(posts, (post: Post, index:number) => {
         if (!post) return;
-        if (index > 2) {
-          index -= index;
-        };
-
+        if (index > 2) index -= index;
         return (
           <Local.CardsColumn bgColor={helperBackground(Number(index))}>
             <Local.CardsTitle>
@@ -50,8 +47,7 @@ const Cards: React.FC = () => {
             </Local.CardsTitle>
             <Local.Paragraph>{post.card_description}</Local.Paragraph>
             <Local.Categories>{post.category.map((e, i) => {
-              console.log(index)
-              return <Local.CategoriesButton bgColor={helperOthers(Number(index))}key={i}>{e}</Local.CategoriesButton>
+              return <Local.CategoriesButton key={i} onClick={() => selectCategory(e)} hoverColor={helperOthers(Number(index))} bgColor={helperOthers(Number(index))}key={i}>{e}</Local.CategoriesButton>
             })}</Local.Categories>
           </Local.CardsColumn>
         );
