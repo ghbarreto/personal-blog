@@ -53,7 +53,11 @@ const displaySocialMediaLinks = () => {
 };
 
 const SocialMedia: React.FC = () => {
-  return <ul style={{ marginTop: '20px' }}>{displaySocialMediaLinks()}</ul>;
+  return (
+    <ul key={'social-media'} style={{ marginTop: '20px' }}>
+      {displaySocialMediaLinks()}
+    </ul>
+  );
 };
 
 export default SocialMedia;

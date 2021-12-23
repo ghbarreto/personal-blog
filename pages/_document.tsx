@@ -39,6 +39,18 @@ export default function Document() {
           as="font"
           crossOrigin=""
         />
+         <link
+          rel="preload"
+          href="/fonts/Fira_Code/FiraCode-Light.ttf"
+          as="font"
+          crossOrigin=""
+        />
+         <link
+          rel="preload"
+          href="/fonts/Fira_Code/FiraCode-SemiBold.ttf"
+          as="font"
+          crossOrigin=""
+        />
       </Head>
       <body>
         <Main />

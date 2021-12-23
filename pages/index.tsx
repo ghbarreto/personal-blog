@@ -1,9 +1,22 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
+import { useContext, useEffect } from 'react';
+
 import * as Styled from '../styles';
 import Landing from '../components/Landing/index';
+import { PostContext } from '../context/PostContext';
 
-const Home: NextPage = () => {
+interface Values {
+  value: []
+}
+
+const Home: NextPage<Values> = ({ value }) => {
+  const { addingPosts } = useContext(PostContext);
+
+  useEffect(() => {
+    addingPosts(value);
+  }, [value, addingPosts]);
+
   return (
     <>
       <Head>
@@ -27,6 +40,14 @@ const Home: NextPage = () => {
       </Styled.Container>
     </>
   );
+};
+
+Home.getInitialProps = async () => {
+  const res = await fetch('http://localhost:3001/api/fetch_posts');
+
+  return {
+    value: await res.json(),
+  };
 };
 
 export default Home;

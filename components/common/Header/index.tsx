@@ -11,7 +11,6 @@ const Header: React.FC = () => {
   const [displayInput, setDisplayInput] = useState(false);
 
   const animation = useSpring({
-    reset: true,
     to: { opacity: 1 },
     from: { opacity: 0 },
   });
