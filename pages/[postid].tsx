@@ -2,6 +2,16 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 import axios from 'axios';
 
+interface NextPageContext{
+  context: any;
+}
+
+interface Req { 
+  req: {
+    params?: (string | number | object | undefined)[] | undefined
+  }
+}
+
 interface Values {
   value: [];
   getInitialProps?(context: NextPageContext): Values | Promise<Values>
@@ -16,9 +26,9 @@ const PostId: NextPage<Values> = ({ value }) => {
   );
 };
 
-PostId.getInitialProps = async ({ req }: any) => {
-  console.log(req.params)
-  const { data } = await axios.get(`http://localhost:3002/api/post${req.params[0]}`);
+PostId.getInitialProps = async (props: Req) => {
+  if (!props.req.params) return;
+  const { data } = await axios.get(`http://localhost:3002/api/post${props.req.params[0]}`);
   return {
     value: data,
   };

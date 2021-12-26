@@ -1,11 +1,12 @@
 [
   {
-    "_id": { "$oid": "61c3f30e8890bff4695e9b57" },
-    "title": "Fourth blog post",
+    "id":  1,
+    "title": "First blog post",
     "card_description": "brief description",
     "category": ["Nodejs"],
-    "date": { "$date": { "$numberLong": "1640142000000" } },
-    "subtitle": "Lorem"
+    "date": "1640142000000",
+    "subtitle": "Lorem",
+    "postName": "post1"
   },
   {
     "_id": { "$oid": "61c3f2f58890bff4695e9b56" },
@@ -13,22 +14,6 @@
     "card_description": "brief description",
     "category": ["Lua", "Java"],
     "date": { "$date": { "$numberLong": "1640142000000" } },
-    "subtitle": "Lorem"
-  },
-  {
-    "_id": { "$oid": "61c3bd208890bff4695e9b55" },
-    "title": "SEC blog post",
-    "card_description": "brief description",
-    "category": ["PYTHON", "Tutorial"],
-    "date": { "$date": { "$numberLong": "1640142000000" } },
-    "subtitle": "Lorem"
-  },
-  {
-    "_id": { "$oid": "61c3ba658890bff4695e9b54" },
-    "title": "First blog post",
-    "card_description": "brief description",
-    "category": ["Javascript", "Tutorial"],
-    "date": { "$date": { "$numberLong": "1640283311186" } },
     "subtitle": "Lorem"
   }
 ]
