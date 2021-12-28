@@ -1,10 +1,7 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import axios from 'axios';
-
-interface NextPageContext{
-  context: any;
-}
+import { NextPageContext } from 'next'
 
 interface Req { 
   req: {
@@ -13,8 +10,7 @@ interface Req {
 }
 
 interface Values {
-  value: [];
-  getInitialProps?(context: NextPageContext): Values | Promise<Values>
+  value: []
 }
 
 const PostId: NextPage<Values> = ({ value }) => {
