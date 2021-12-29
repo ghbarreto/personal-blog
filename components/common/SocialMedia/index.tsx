@@ -54,9 +54,11 @@ const displaySocialMediaLinks = () => {
 
 const SocialMedia: React.FC = () => {
   return (
-    <ul key={'social-media'} style={{ marginTop: '20px' }}>
-      {displaySocialMediaLinks()}
-    </ul>
+    <div>
+      <ul key={'social-media'} style={{ marginTop: '20px' }}>
+        {displaySocialMediaLinks()}
+      </ul>
+    </div>
   );
 };
 

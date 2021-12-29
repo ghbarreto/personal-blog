@@ -2,7 +2,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 const fs = require('fs');
 const md = require('markdown-it')();
-const path = require('path');
 
 type Data = {
   name: string;
@@ -17,7 +16,7 @@ export default async function handler(
     const file = fs.readFile(`./posts/${pid}.md`, 'utf8', (err: Error, data: string) => {
       if (!err || data !== undefined) return res.status(200).send(md.render(data));
 
-      if(err) res.status(400).send({...err, "success": false});
+      if(err) res.status(400).send(err);
     });
   } else {
     res.status(400).write('error');

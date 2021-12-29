@@ -61,7 +61,7 @@ export const CategoriesButton = styled.div<Tags>`
   padding: 10px 20px;
   text-transform: uppercase;
   font-weight: 600;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
   color: ${bgColor};
   border-radius: 120px;
   background-color: ${props => props.bgColor || null};
