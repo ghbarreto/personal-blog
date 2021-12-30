@@ -41,13 +41,11 @@ const displayIcons = (name: string, src: string) => {
 };
 
 const displaySocialMediaLinks = () => {
-  return _.map(links, (link: Values) => {
+  return _.map(links, (link: Values, index: number) => {
     return (
-      <React.Fragment>
-        <Styled.DisplayInline>
-          {displayIcons(link.name, link.src)}
-        </Styled.DisplayInline>
-      </React.Fragment>
+      <Styled.DisplayInline key={index}>
+        {displayIcons(link.name, link.src)}
+      </Styled.DisplayInline>
     );
   });
 };

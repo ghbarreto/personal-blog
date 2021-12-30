@@ -8,5 +8,35 @@
     "post_file": "post1",
     "id": 1,
     "word_count": 2000
+  },
+  {
+    "title": "Second blog post",
+    "card_description": "this is not a brief description",
+    "category": ["React"],
+    "date": "1640831639102",
+    "subtitle": "Lorem",
+    "post_file": "post1",
+    "id": 2,
+    "word_count": 44355
+  },
+  {
+    "title": "Third blog post",
+    "card_description": "this should have been a brief description",
+    "category": ["Redux"],
+    "date": "1640831648427",
+    "subtitle": "Lorem",
+    "post_file": "post1",
+    "id": 3,
+    "word_count": 85030
+  },
+  {
+    "title": "Fourth blog post",
+    "card_description": "this should stop trying to be a brief description",
+    "category": ["Nextjs", "Tutorial"],
+    "date": "1640827663171",
+    "subtitle": "Lorem",
+    "post_file": "post1",
+    "id": 4,
+    "word_count": 850000
   }
 ]

@@ -7,12 +7,12 @@ interface Props {
 const ReadCount: React.FC<Props> = ({ wc }) => {
   const formatReadTime = () => {
     const wordPerMinute = 200;
-    console.log(typeof wc)
+
     return Math.ceil(wc / wordPerMinute);
   }
   console.log(formatReadTime(), wc)
 
-  return <Reusable.FormatDate>{ formatReadTime() } min read.</Reusable.FormatDate>
+  return <Reusable.FormatDate>{ formatReadTime() } min read </Reusable.FormatDate>
 }
 
 export default ReadCount;

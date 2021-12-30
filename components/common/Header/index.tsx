@@ -26,7 +26,7 @@ const Header: React.FC = () => {
   return (
     <>
       <Styles.Header>
-        <Image src="/logo.png" alt="logo" width={'150px'} height={'150px'} />
+        <Image src="/logo.png" alt="logo" width={'100px'} height={'100px'} />
         <Styles.SearchInput>
           {displayInput && (
             <animated.div style={animation}>

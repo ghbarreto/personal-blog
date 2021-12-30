@@ -3,11 +3,11 @@ import { bgColor } from '../../../../styles/utilities';
 
 interface CardsColumn {
   bgColor?: string;
+  hoverColor?: string;
 }
 
 interface Tags extends CardsColumn {
   color?: string;
-  hoverColor?: string;
 }
 
 export const Cards = styled.div`
@@ -15,6 +15,8 @@ export const Cards = styled.div`
   justify-content: center;
   flex-wrap: wrap;
   margin: 0 auto;
+  
+  
 `;
 
 export const CardsColumn = styled.div<CardsColumn>`
@@ -24,6 +26,11 @@ export const CardsColumn = styled.div<CardsColumn>`
   max-width: 380px;
   margin-top: 50px;
   flex: 1 0 25%;
+  &:hover{
+    box-shadow: ${props => `18px 18px 12px ${props.hoverColor}` || null};
+    cursor: pointer;
+    transition: .2s box-shadow;
+  }
 `;
 
 export const CardsTitle = styled.div`
@@ -53,7 +60,6 @@ export const Categories = styled.div`
   margin-left: 10%;
   display: flex;
   margin-top: -15px;
- 
 `;
 export const CategoriesButton = styled.div<Tags>`
   margin-right: 15px;
@@ -69,7 +75,26 @@ export const CategoriesButton = styled.div<Tags>`
   &:hover {
     color: ${props => props.hoverColor || null};
     background-color: ${bgColor};
-    transition: .2s background-color;
+    transition: 0.2s background-color;
     cursor: pointer;
+  }
+`;
+
+export const CardsFooter = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 15px;
+  margin-right: 30px;
+  align-items: center;
+
+  span {
+    height: 8px;
+    width: 8px;
+    background-color: ${bgColor};
+    opacity: 0.9;
+    border-radius: 120px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 2px;
   }
 `;

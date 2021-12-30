@@ -3,7 +3,7 @@ import * as utilities from '../../../../styles/utilities';
 
 export const Container = styled.div`
   text-align: center;
-  margin-top: -100px;
+  margin-top: -10px;
 
   img {
     border-radius: 140px;

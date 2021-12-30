@@ -7,8 +7,8 @@ const Info: React.FC = () => {
     <Styles.Container>
       <Image
         src="/header-image.png"
-        width={'150px'}
-        height={'150px'}
+        width={'120px'}
+        height={'120px'}
         alt={'pixel art'}
       />
       <Styles.InfoHeader>

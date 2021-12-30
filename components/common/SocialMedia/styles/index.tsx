@@ -1,16 +1,18 @@
-import styled from 'styled-components'
-import * as utilities from '../../../../styles/utilities'
+import styled from 'styled-components';
+import * as utilities from '../../../../styles/utilities';
 
 export const DisplayInline = styled.li`
   display: inline;
   margin: 30px;
   color: ${utilities.highlight};
-  &:hover{
+  &:hover {
     cursor: pointer;
+    color: ${utilities.yellow};
+    transition: 0.1s color;
   }
 
-  a{
+  a {
     color: inherit;
     text-decoration: inherit;
   }
-`
+`;

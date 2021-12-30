@@ -12,6 +12,7 @@ interface ButtonProps {
   color?: string | null;
   maxWidth?: string | null;
   marginTop?: string | null;
+  transition?: string | null;
 }
 
 export const Container = styled.body`
@@ -30,10 +31,11 @@ export const Button = styled.a<ButtonProps>`
   margin: ${props => props.margin || '0px'};
   color: ${props => props.color || 'white'};
   max-width: ${props => props.maxWidth || undefined};
-  margin-top: ${props => props.marginTop || undefined}
+  margin-top: ${props => props.marginTop || undefined};
+  transition: .2s background-color;
 
   &:hover {
-    cursor: ${props => props.hoverBg && 'pointer'};
+    cursor: pointer;
     text-align: center;
   }
 `;
@@ -42,3 +44,8 @@ export const Tags = styled.span<ButtonProps>`
   color: ${props => (props.primary ? utilities.highlight : utilities.yellow)};
   font-size: ${props => props.fontSize || '16px'};
 `;
+
+export const FlexCenter = styled.div`
+  display: flex;
+  justify-content: center;
+`

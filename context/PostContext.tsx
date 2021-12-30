@@ -48,7 +48,7 @@ export const PostContextProvider: React.FC<Props> = ({ children }: Props) => {
           );
           if (!selectedCategory) return post;
           
-          return checkIfInArray ? post : null;
+          return checkIfInArray ? post : [];
         }),
         addingPosts,
         retrieveCategory,
