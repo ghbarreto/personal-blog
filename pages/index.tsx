@@ -2,6 +2,7 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 import { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
+import Link from 'next/link';
 
 import * as Styled from '../styles';
 import Landing from '../components/Landing/index';
@@ -28,18 +29,20 @@ const Home: NextPage<Values> = ({ value }) => {
         <link rel="icon" href="/logo.png" />
       </Head>
       <Styled.Container>
-        <Styled.Button
-          onMouseEnter={() => setHover(true)}
-          onMouseLeave={() => setHover(false)}
-          bgColor={hover ? bgColor : 'transparent'}
-          fontSize={'26px'}
-          paddingLeft={'250px'}
-          margin={'-100px'}
-          color={hover ? 'white' : bgColor}
-        >
-          <Styled.Tags fontSize={'29px'}>《&#123;</Styled.Tags>Portfolio
-          <Styled.Tags fontSize={'29px'}>&#125;</Styled.Tags>
-        </Styled.Button>
+        <Link href="https://www.ghbarreto.dev" passHref>
+          <Styled.Button
+            onMouseEnter={() => setHover(true)}
+            onMouseLeave={() => setHover(false)}
+            bgColor={hover ? bgColor : 'transparent'}
+            fontSize={'26px'}
+            paddingLeft={'250px'}
+            margin={'-100px'}
+            color={hover ? 'white' : bgColor}
+          >
+            <Styled.Tags fontSize={'29px'}>《&#123;</Styled.Tags>Portfolio
+            <Styled.Tags fontSize={'29px'}>&#125;</Styled.Tags>
+          </Styled.Button>
+        </Link>
         <Styled.Component>
           <Landing />
         </Styled.Component>
@@ -49,11 +52,16 @@ const Home: NextPage<Values> = ({ value }) => {
 };
 
 Home.getInitialProps = async () => {
-  const { data } = await axios.get('http://localhost:3002/api/fetch_posts');
-
-  return {
-    value: data,
-  };
+  try {
+    const { data } = await axios.get('http://localhost:3002/api/fetch_posts');
+    return {
+      value: data,
+    };
+  } catch (err) {
+    return {
+      value: {}
+    }
+  }
 };
 
 export default Home;

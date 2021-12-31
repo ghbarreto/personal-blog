@@ -17,14 +17,17 @@ const Category: React.FC = () => {
 
   return (
     <>
-      {selectedCategory && (
+      {
+        // container to display the category separately
+        /* {selectedCategory && (
         <Local.CategorySelected onClick={() => selectCategory('')}>
           <Local.CategoryText>{selectedCategory}</Local.CategoryText>{' '}
           <Local.Icon>
             <AiFillCloseCircle size={20} />
           </Local.Icon>
         </Local.CategorySelected>
-      )}
+      )} */
+      }
       <Local.Container>
         {_.map(uniqueValues, (categories: string, index) => (
           <Global.Button
@@ -38,7 +41,10 @@ const Category: React.FC = () => {
                 ? utilities.lightblue
                 : 'transparent'
             }
-            onClick={() => selectCategory(categories)}
+            onClick={() => {
+              if (selectedCategory !== categories) selectCategory(categories);
+              if (selectedCategory === categories) selectCategory('');
+            }}
             fontSize={'25px'}
             maxWidth={'200px'}
             margin={'0 auto'}
@@ -70,7 +76,12 @@ const Category: React.FC = () => {
               fontSize={'25px'}
             >
               {'}'}
-            </Global.Tags>
+            </Global.Tags>{' '}
+            {selectedCategory === categories && (
+              <Local.Icon>
+                <AiFillCloseCircle size={22} />
+              </Local.Icon>
+            )}
           </Global.Button>
         ))}
       </Local.Container>

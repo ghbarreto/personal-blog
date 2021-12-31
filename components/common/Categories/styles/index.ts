@@ -1,11 +1,20 @@
 import styled from 'styled-components';
-import { lightblue, highlight, bgColor } from '../../../../styles/utilities';
+import {
+  lightblue,
+  highlight,
+  bgColor,
+  yellow,
+} from '../../../../styles/utilities';
 
 export const Container = styled.div`
   display: flex;
   flex-flow: row wrap;
   position: relative;
+  justify-content: space-between;
+  max-width: 80%;
+  margin: 0 auto;
   margin-top: 4%;
+  margin-bottom: 2%;
   font-family: Fira Code, monospace;
   a {
     text-align: center;
@@ -24,14 +33,12 @@ export const CategorySelected = styled.div`
   width: 150px;
   margin: 90px auto;
 
-  &:hover{
+  &:hover {
     background-color: ${highlight};
     cursor: pointer;
-    transition: .4s background-color;
+    transition: 0.4s background-color;
   }
-  
 `;
-
 
 export const CategoryText = styled.div`
   text-align: center;
@@ -42,6 +49,12 @@ export const CategoryText = styled.div`
 `;
 
 export const Icon = styled.div`
-  display: flex;
-  align-items: center;
+  display: inline;
+  color: white;
+  opacity: 1;
+  margin-top: -202px;
+  &:hover {
+    color: ${bgColor};
+    transition: 0.3s color ease-out;
+  }
 `;

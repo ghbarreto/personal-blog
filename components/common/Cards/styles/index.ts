@@ -15,8 +15,6 @@ export const Cards = styled.div`
   justify-content: center;
   flex-wrap: wrap;
   margin: 0 auto;
-  
-  
 `;
 
 export const CardsColumn = styled.div<CardsColumn>`
@@ -27,9 +25,9 @@ export const CardsColumn = styled.div<CardsColumn>`
   margin-top: 50px;
   flex: 1 0 25%;
   &:hover{
-    box-shadow: ${props => `18px 18px 12px ${props.hoverColor}` || null};
+    box-shadow: ${props => `18px 18px 2px ${props.hoverColor}` || null};
     cursor: pointer;
-    transition: .2s box-shadow;
+    transform: translate(-25px, -10px)
   }
 `;
 

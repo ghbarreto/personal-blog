@@ -13,12 +13,11 @@ export default async function handler(
   if (req.method === 'GET') {
     const { pid } = req.query;
 
-    const file = fs.readFile(`./posts/${pid}.md`, 'utf8', (err: Error, data: string) => {
+    const file = fs.readFile(`./posts/post${pid}.md`, 'utf8', (err: Error, data: string) => {
       if (!err || data !== undefined) return res.status(200).send(md.render(data));
-
-      if(err) res.status(400).send(err);
+      if(err) console.log(err);
     });
   } else {
-    res.status(400).write('error');
+    return;
   }
 }

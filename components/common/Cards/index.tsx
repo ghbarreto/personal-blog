@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import _ from 'lodash';
+import { useRouter } from 'next/router';
 
 import {
   helperOthers,
@@ -22,17 +23,25 @@ interface Post {
 
 const Cards: React.FC = () => {
   const { posts, selectCategory } = useContext(PostContext);
+  const router = useRouter()
 
   return (
     <Local.Cards>
       {_.map(posts, (post: Post, index: number) => {
-        if (!post.title || !post.date || !post.word_count || !post.card_description) return;
+        if (
+          !post.title ||
+          !post.date ||
+          !post.word_count ||
+          !post.card_description
+        )
+          return;
         if (index > 2) index -= index;
         return (
           <Local.CardsColumn
-            key={posts.id}
+            key={post.id}
             bgColor={helperBackground(Number(index))}
             hoverColor={helperHover(Number(index))}
+            onClick={() => router.push(`/?posts=${post.id}`)}
           >
             <Local.CardsTitle>
               <Local.Tags color={helperOthers(Number(index))}>{'>'}</Local.Tags>{' '}
@@ -40,18 +49,19 @@ const Cards: React.FC = () => {
             </Local.CardsTitle>
             <Local.Paragraph>{post.card_description}</Local.Paragraph>
             <Local.Categories>
-              {post.category && post?.category.map((e: any, i) => {
-                return (
-                  <Local.CategoriesButton
-                    key={e.id}
-                    onClick={() => selectCategory(e)}
-                    hoverColor={helperOthers(Number(index))}
-                    bgColor={helperOthers(Number(index))}
-                  >
-                    {e}
-                  </Local.CategoriesButton>
-                );
-              })}
+              {post.category &&
+                post?.category.map((e: string, i: number) => {
+                  return (
+                    <Local.CategoriesButton
+                      key={i}
+                      onClick={() => selectCategory(e)}
+                      hoverColor={helperOthers(Number(index))}
+                      bgColor={helperOthers(Number(index))}
+                    >
+                      {e}
+                    </Local.CategoriesButton>
+                  );
+                })}
             </Local.Categories>
             <Local.CardsFooter>
               <ReadCount wc={post.word_count} />

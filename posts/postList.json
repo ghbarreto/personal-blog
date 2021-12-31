@@ -5,7 +5,6 @@
     "category": ["Nodejs"],
     "date": "1640142000000",
     "subtitle": "Lorem",
-    "post_file": "post1",
     "id": 1,
     "word_count": 2000
   },
@@ -15,7 +14,6 @@
     "category": ["React"],
     "date": "1640831639102",
     "subtitle": "Lorem",
-    "post_file": "post1",
     "id": 2,
     "word_count": 44355
   },
@@ -25,7 +23,6 @@
     "category": ["Redux"],
     "date": "1640831648427",
     "subtitle": "Lorem",
-    "post_file": "post1",
     "id": 3,
     "word_count": 85030
   },
@@ -35,7 +32,6 @@
     "category": ["Nextjs", "Tutorial"],
     "date": "1640827663171",
     "subtitle": "Lorem",
-    "post_file": "post1",
     "id": 4,
     "word_count": 850000
   }

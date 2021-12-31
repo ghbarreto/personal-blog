@@ -1,13 +1,17 @@
 import React from 'react';
+import { useRouter } from 'next/router';
 
 import Header from '../common/Header';
 import Categories from '../common/Categories';
 import Cards from '../common/Cards';
 import SocialMedia from '../common/SocialMedia';
 import * as Reusable from '../../styles/Reusable';
-import Footer from '../common/Footer'
+import Footer from '../common/Footer';
+import PostId from '../../pages/[postid]';
 
-const Landing: React.FC = () => {
+const Landing: React.FC = (props) => {
+  const router = useRouter();
+
   return (
     <>
       <Header />
@@ -15,8 +19,9 @@ const Landing: React.FC = () => {
       <Cards />
       <Reusable.FlexCenter>
         <SocialMedia />
+        <PostId open={!!router.query.posts} fromLanding />
       </Reusable.FlexCenter>
-      <Footer/>
+      <Footer />
     </>
   );
 };
