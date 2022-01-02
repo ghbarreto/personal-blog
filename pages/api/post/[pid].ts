@@ -1,24 +1,40 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next';
-const fs = require('fs');
-const md = require('markdown-it')();
+import * as fs from 'fs';
 
 type Data = {
   name: string;
 };
-export default async function handler(
+export default async function (
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  if (req.method === 'GET') {
+  try {
+    const md = require('markdown-it')();
     const { pid } = req.query;
-    if (!pid || pid === undefined || pid === null) return;
+    const filePath = `./posts/post${pid}.md`;
+    const encoding = 'utf8';
 
-    const file = fs.readFile(`./posts/post${pid}.md`, 'utf8', (err: Error, data: string) => {
-      if (!err || data !== undefined) return res.status(200).send(md.render(data));
-      if(err) console.log(err);
-    });
-  } else {
-    return;
+    if (!pid || pid === undefined || pid === null) return;
+    const file = fs.readFile(
+      filePath,
+      encoding,
+      (err: NodeJS.ErrnoException | null, data: string) => {
+        try {
+          if (!err || data !== undefined)
+            return res.status(200).send(md.render(data));
+        } catch (err) {
+          if (err) return res.status(404).end();
+        }
+      }
+    );
+  } catch (err) {
+    res.status(404).end();
   }
 }
+
+export const config = {
+  api: {
+    externalResolver: true,
+  },
+};

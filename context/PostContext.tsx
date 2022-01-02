@@ -39,7 +39,6 @@ export const PostContextProvider: React.FC<Props> = ({ children }: Props) => {
   };
 
   const chosenPostFunction = (id: string | string[] | undefined) => {
-    console.log(id)
     return setChosenPost(Number(id));
   };
 
