@@ -23,7 +23,7 @@ interface Post {
 
 const Cards: React.FC = () => {
   const { posts, selectCategory } = useContext(PostContext);
-  const router = useRouter()
+  const router = useRouter();
 
   return (
     <Local.Cards>
@@ -54,7 +54,10 @@ const Cards: React.FC = () => {
                   return (
                     <Local.CategoriesButton
                       key={i}
-                      onClick={() => selectCategory(e)}
+                      onClick={v => {
+                        v.stopPropagation();
+                        selectCategory(e);
+                      }}
                       hoverColor={helperOthers(Number(index))}
                       bgColor={helperOthers(Number(index))}
                     >

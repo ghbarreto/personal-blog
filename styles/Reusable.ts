@@ -15,7 +15,7 @@ interface ButtonProps {
   transition?: string | null;
 }
 
-export const Container = styled.div`
+export const Container = styled.body`
   background-color: ${utilities.lightblue};
   height: 100vh;
   font-family: 'Fira Code', monospace;

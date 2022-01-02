@@ -5,9 +5,26 @@ interface Props {
   children?: React.ReactElement;
   path: (event: React.MouseEvent | React.KeyboardEvent) => void;
 }
+
+const customStyle = {
+  overlay: {
+    backgroundColor: 'transparent',
+    border: '0',
+    margin: '0 auto',
+  },
+  content: {
+    borderRadius: 50,
+  },
+};
+
 const Modal: React.FC<Props> = ({ open, path, children }) => {
   return (
-    <ReactModal isOpen={open} onRequestClose={path} ariaHideApp={false}>
+    <ReactModal
+      isOpen={open}
+      onRequestClose={path}
+      ariaHideApp={false}
+      style={customStyle}
+    >
       {children}
     </ReactModal>
   );

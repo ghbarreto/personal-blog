@@ -7,6 +7,7 @@ interface Props {
 
 interface Post {
   post: {
+    id: number;
     category: string[];
   };
 }
@@ -17,6 +18,9 @@ export interface PostContextReturn {
   retrieveCategory?: any;
   selectCategory: (arg0: string) => void;
   selectedCategory: string;
+  chosenPostFunction: (id: string | string[] | undefined) => void;
+  chosenPost: string | number | string[] | undefined;
+  postSelected: {};
 }
 
 export const PostContext = createContext<PostContextReturn>(
@@ -26,13 +30,21 @@ export const PostContext = createContext<PostContextReturn>(
 export const PostContextProvider: React.FC<Props> = ({ children }: Props) => {
   const [posts, setPosts] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState<string>('');
+  const [chosenPost, setChosenPost] = useState<
+    number | string | string[] | undefined
+  >();
 
   const addingPosts = (postsObject: []) => {
     return setPosts(postsObject);
   };
 
+  const chosenPostFunction = (id: string | string[] | undefined) => {
+    console.log(id)
+    return setChosenPost(Number(id));
+  };
+
   const retrieveCategory = () => {
-    if (!posts) return null;
+    if (Object.keys(posts).length < 1) return null;
     return posts.reduce((a, { category }) => [...a, ...category], []);
   };
   const selectCategory = (category: string) => {
@@ -47,13 +59,19 @@ export const PostContextProvider: React.FC<Props> = ({ children }: Props) => {
             e => e.toLowerCase() === selectedCategory.toLowerCase()
           );
           if (!selectedCategory) return post;
-          
+
           return checkIfInArray ? post : [];
+        }),
+        postSelected: _.map(posts, (post: Post['post']) => {
+          const checkPost = chosenPost && chosenPost === post.id
+          return checkPost && post;
         }),
         addingPosts,
         retrieveCategory,
         selectCategory,
         selectedCategory,
+        chosenPostFunction,
+        chosenPost,
       }}
     >
       {children}
