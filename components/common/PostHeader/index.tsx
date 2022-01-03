@@ -4,7 +4,7 @@ interface Props {
 }
 
 const PostHeader:React.FC<Props> = ({title, color}) => {
-  return <div style={{color: color}}>{title}</div>
+  return <div style={{backgroundColor: color}}>{title}</div>
 }
 
 export default PostHeader;

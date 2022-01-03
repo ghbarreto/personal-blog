@@ -49,8 +49,9 @@ const PostId: NextPage<Values> = ({ value, open, fromLanding }) => {
         <>
           <ReactModal open={open} path={() => router.push('/')}>
             <div style={{ color: 'black' }}>
-              {_.map(postSelected, (post: Post, index:number) => {
+              {postSelected && _.map(postSelected, (post: Post, index:number) => {
                 if (Number(index) > 2) index -= index;
+                if (!post) return;
                 return <PostHeader title={post.title} color={helperBackground(index)} />;
               })}
               Title
