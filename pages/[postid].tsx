@@ -9,7 +9,8 @@ import { useRouter } from 'next/router';
 import { PostContext } from '../context/PostContext';
 import PostHeader from '../components/common/PostHeader';
 import { helperBackground } from '../styles/utilities';
-import {Post} from '../types/types'
+import { Post } from '../types/types'
+import DateFormat from '../components/common/DateFormat'
 
 interface Req {
   params?: (string | number | object | undefined)[] | undefined;
@@ -52,7 +53,7 @@ const PostId: NextPage<Values> = ({ value, open, fromLanding }) => {
               {postSelected && _.map(postSelected, (post: Post, index:number) => {
                 if (Number(index) > 2) index -= index;
                 if (!post) return;
-                return <PostHeader title={post.title} color={helperBackground(index)} />;
+                return <PostHeader title={post.title} color={helperBackground(index)} date={<DateFormat date={post.date} />} />;
               })}
               Title
               <div dangerouslySetInnerHTML={{ __html: postContent }}></div>
