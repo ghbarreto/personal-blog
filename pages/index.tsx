@@ -59,8 +59,8 @@ Home.getInitialProps = async () => {
     };
   } catch (err) {
     return {
-      value: {}
-    }
+      value: {},
+    };
   }
 };
 
