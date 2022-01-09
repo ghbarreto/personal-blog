@@ -17,7 +17,7 @@ const Home: NextPage<Values> = ({ value }) => {
   const { addingPosts } = useContext(PostContext);
   const [hover, setHover] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
-
+  console.log("value", value)
   useEffect(() => {
     if (!value) setLoading(true);
     if (value) {
@@ -72,7 +72,7 @@ Home.getInitialProps = async ({ req }) => {
     };
   } catch (err) {
     return {
-      value: {},
+      value: {err},
     };
   }
 };
