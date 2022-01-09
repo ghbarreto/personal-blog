@@ -57,9 +57,16 @@ const Home: NextPage<Values> = ({ value }) => {
   );
 };
 
-Home.getInitialProps = async () => {
+Home.getInitialProps = async ({ req }) => {
+  let protocol = 'https://';
+  let host = req ? req.headers.host : window.location.hostname;
+
+  if (host && host.indexOf('localhost') > -1) {
+    protocol = 'http:';
+  }
+
   try {
-    const { data } = await axios.get('http://localhost:3002/api/fetch_posts');
+    const { data } = await axios.get(`${protocol}//${host}/api/fetch_posts`);
     return {
       value: data,
     };
