@@ -2,9 +2,9 @@
   "name": "blog",
   "private": true,
   "scripts": {
-    "dev": "node server.ts",
+    "dev": "nodemon server.ts",
     "build": "next build",
-    "start": "NODE_ENV=production node server.ts"
+    "start": "NODE_ENV=production nodemon server.ts"
   },
   "dependencies": {
     "@emotion/react": "^11.7.1",
