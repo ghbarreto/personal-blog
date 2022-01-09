@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "node server.js",
     "build": "next build",
-    "start": "NODE_ENV=production node server.js"
+    "start": "NODE_ENV=production node server.ts"
   },
   "dependencies": {
     "@emotion/react": "^11.7.1",
