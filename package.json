@@ -4,6 +4,7 @@
   "scripts": {
     "dev": "node server.ts",
     "start": "NODE_ENV=production node server.ts",
+    "starting": "next dev",
     "build": "next build",
     "lint": "next lint",
     "nodemon": "nodemon server.ts"
