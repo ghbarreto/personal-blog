@@ -16,9 +16,14 @@ interface Values {
 const Home: NextPage<Values> = ({ value }) => {
   const { addingPosts } = useContext(PostContext);
   const [hover, setHover] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    addingPosts(value);
+    if (!value) setLoading(true);
+    if (value) {
+      addingPosts(value);
+      setLoading(false);
+    }
   }, [value, addingPosts]);
 
   return (
@@ -44,6 +49,7 @@ const Home: NextPage<Values> = ({ value }) => {
           </Styled.Button>
         </Link>
         <Styled.Component>
+          {loading && <h3>Loading...</h3>}
           <Landing />
         </Styled.Component>
       </Styled.Container>

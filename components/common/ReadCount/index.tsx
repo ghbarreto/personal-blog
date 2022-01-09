@@ -11,7 +11,7 @@ const ReadCount: React.FC<Props> = ({ wc }) => {
     return Math.ceil(wc / wordPerMinute);
   }
 
-  return <Reusable.FormatDate>{ formatReadTime() } min read </Reusable.FormatDate>
+  return <Reusable.FormatDate fontSize="20px">{ formatReadTime() } min read </Reusable.FormatDate>
 }
 
 export default ReadCount;

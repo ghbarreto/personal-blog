@@ -11,6 +11,10 @@ interface Values {
   src: string;
 }
 
+interface Props {
+  bottomSpacing?: string;
+}
+
 const displayIcons = (name: string, src: string) => {
   switch (name) {
     case 'Github':
@@ -40,17 +44,17 @@ const displayIcons = (name: string, src: string) => {
   }
 };
 
-const displaySocialMediaLinks = () => {
-  return _.map(links, (link: Values, index: number) => {
-    return (
-      <Styled.DisplayInline key={index}>
-        {displayIcons(link.name, link.src)}
-      </Styled.DisplayInline>
-    );
-  });
-};
+const SocialMedia: React.FC<Props> = ({ bottomSpacing }) => {
+  const displaySocialMediaLinks = () => {
+    return _.map(links, (link: Values, index: number) => {
+      return (
+        <Styled.DisplayInline key={index} bottomSpacing={bottomSpacing}>
+          {displayIcons(link.name, link.src)}
+        </Styled.DisplayInline>
+      );
+    });
+  };
 
-const SocialMedia: React.FC = () => {
   return (
     <div>
       <ul key={'social-media'} style={{ marginTop: '20px' }}>

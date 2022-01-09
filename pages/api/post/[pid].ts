@@ -15,7 +15,7 @@ export default async function (
     const filePath = `./posts/post${pid}.md`;
     const encoding = 'utf8';
 
-    if (!pid || pid === undefined || pid === null) return;
+    if (!pid) return;
     const file = fs.readFile(
       filePath,
       encoding,

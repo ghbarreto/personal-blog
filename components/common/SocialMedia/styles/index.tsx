@@ -1,7 +1,11 @@
 import styled from 'styled-components';
 import * as utilities from '../../../../styles/utilities';
 
-export const DisplayInline = styled.li`
+interface Props {
+  bottomSpacing?: string;
+}
+
+export const DisplayInline = styled.li<Props>`
   display: inline;
   margin: 30px;
   color: ${utilities.highlight};
@@ -14,5 +18,9 @@ export const DisplayInline = styled.li`
   a {
     color: inherit;
     text-decoration: inherit;
+  }
+
+  svg {
+    padding-bottom: ${props => props.bottomSpacing || null};
   }
 `;
