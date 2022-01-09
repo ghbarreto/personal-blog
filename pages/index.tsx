@@ -19,16 +19,12 @@ const Home: NextPage<Values> = ({ value }) => {
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    const request = async () => {
-      const { data } = await axios.get(`/api/fetch_posts`);
-      if (data) {
-        addingPosts(data);
-        setLoading(false);
-      }
-    };
-    setLoading(true);
-    request();
-  }, []);
+    if (!value) setLoading(true);
+    if (value) {
+      addingPosts(value);
+      setLoading(false);
+    }
+  }, [value, addingPosts]);
 
   return (
     <>
@@ -61,24 +57,24 @@ const Home: NextPage<Values> = ({ value }) => {
   );
 };
 
-// Home.getInitialProps = async ({ req }) => {
-//   let protocol = 'https://';
-//   let host = req ? req.headers.host : window.location.hostname;
+Home.getInitialProps = async ({ req }) => {
+  let protocol = 'https://';
+  let host = req ? req.headers.host : window.location.hostname;
 
-//   if (host && host.indexOf('localhost') > -1) {
-//     protocol = 'http:';
-//   }
+  if (host && host.indexOf('localhost') > -1) {
+    protocol = 'http:';
+  }
 
-//   try {
-//     const { data } = await axios.get(`${protocol}//${host}/api/fetch_posts`);
-//     return {
-//       value: data,
-//     };
-//   } catch (err) {
-//     return {
-//       value: {},
-//     };
-//   }
-// };
+  try {
+    const { data } = await axios.get(`${protocol}//${host}/api/fetch_posts`);
+    return {
+      value: data,
+    };
+  } catch (err) {
+    return {
+      value: {},
+    };
+  }
+};
 
 export default Home;

@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "dev": "node server.ts",
-    "start": "NODE_ENV=production node server.ts",
+    "start": "NODE_ENV=production nodemon server.ts",
     "starting": "next dev",
     "build": "next build",
     "lint": "next lint",
