@@ -25,7 +25,7 @@ export const PostBody = styled.div`
   p{
     text-align: left;
     word-spacing: 5px;
-    letter-spacing: 2px;
+    letter-spacing: 2px
   }
   a {
     text-decoration: none;
