@@ -45,6 +45,8 @@ const PostId: NextPage<Values> = ({ value, open, fromLanding }) => {
   }, [open, router.query.posts, chosenPostFunction]);
 
   if (!postSelected) return <div>{() => router.push('/')}</div>;
+  
+  console.log("postSelect inside [postid]" + postSelected)
 
   return (
     <>

@@ -24,7 +24,7 @@ export default async function (
           if (!err || data !== undefined)
             return res.status(200).send(md.render(data));
         } catch (err) {
-          if (err) return res.status(404).end();
+          if (err) return console.log(err)
         }
       }
     );

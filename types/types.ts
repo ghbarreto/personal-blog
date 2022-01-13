@@ -7,3 +7,7 @@ export interface Post {
   word_count: number;
   subtitle: string;
 }
+
+export enum Add {
+
+}
