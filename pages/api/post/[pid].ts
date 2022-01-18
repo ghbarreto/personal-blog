@@ -1,39 +1,29 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next';
 import * as fs from 'fs';
-const md = require('markdown-it')();
+import { marked } from 'marked';
 
 type Data = {
   name: string;
 };
-export default async function (
-  req: NextApiRequest,
-  res: NextApiResponse<any>
-) {
-  try {
-    const { pid } = req.query;
-    const filePath = `./posts/post${pid}.md`;
-    const encoding = 'utf8';
+export default async function (req: NextApiRequest, res: NextApiResponse<any>) {
+  const { pid } = req.query;
+  const filePath = `./public/posts/post${pid}.md`;
+  const encoding = 'utf8';
 
-    console.log(`pid: ${pid}, filePath: ${filePath}, encoding: ${encoding}`);
+  console.log(`pid: ${pid}, filePath: ${filePath}, encoding: ${encoding}`);
 
-    if (!pid) return;
-    const file = fs.readFile(
-      filePath,
-      encoding,
-      (err: NodeJS.ErrnoException | null, data: any) => {
-        try {
-          if (!err || data !== undefined) console.log(`data: ${data}`);
-          return res.status(200).send("Helloooo");
-        } catch (err) {
-          if (err) return console.log(err);
-        }
-      }
-    );
-  } catch (err) {
-    console.log(err);
-    res.status(404).end();
-  }
+  if (!pid) return;
+
+  fs.readFile(
+    filePath,
+    encoding,
+    (err: NodeJS.ErrnoException | null, data: any) => {
+      if (err) console.log(err);
+      if (!err || data !== undefined) console.log(`data: ${data}`);
+      return res.status(200).send(marked(data.toString()));
+    }
+  );
 }
 
 export const config = {
