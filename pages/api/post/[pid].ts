@@ -8,7 +8,7 @@ type Data = {
 };
 export default async function (
   req: NextApiRequest,
-  res: NextApiResponse<Data>
+  res: NextApiResponse<any>
 ) {
   try {
     const { pid } = req.query;
@@ -24,7 +24,7 @@ export default async function (
       (err: NodeJS.ErrnoException | null, data: any) => {
         try {
           if (!err || data !== undefined) console.log(`data: ${data}`);
-          return res.status(200).send(md.render(data));
+          return res.status(200).send("Helloooo");
         } catch (err) {
           if (err) return console.log(err);
         }
