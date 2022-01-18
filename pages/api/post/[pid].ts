@@ -22,11 +22,11 @@ export default async function (
     const file = fs.readFile(
       filePath,
       encoding,
-      (err: NodeJS.ErrnoException | null, data: string) => {
+      (err: NodeJS.ErrnoException | null, data: any) => {
         try {
           if (!err || data !== undefined)
             console.log(`data: ${data}`)
-            return res.status(200).send(md.render(data));
+            return res.status(200).send(data);
         } catch (err) {
           if (err) return console.log(err)
         }
