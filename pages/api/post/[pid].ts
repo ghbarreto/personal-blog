@@ -15,8 +15,7 @@ export default async function (
     const filePath = `./posts/post${pid}.md`;
     const encoding = 'utf8';
 
-    console.log(`pid: ${pid}, filePath: ${filePath}, encoding: ${encoding}`)
-
+    console.log(`pid: ${pid}, filePath: ${filePath}, encoding: ${encoding}`);
 
     if (!pid) return;
     const file = fs.readFile(
@@ -24,16 +23,15 @@ export default async function (
       encoding,
       (err: NodeJS.ErrnoException | null, data: string) => {
         try {
-          if (!err || data !== undefined)
-            console.log(`data: ${data}`)
-            return res.status(200).send(md.render(data.toString()));
+          if (!err || data !== undefined) console.log(`data: ${data}`);
+          return res.status(200).send(data);
         } catch (err) {
-          if (err) return console.log(err)
+          if (err) return console.log(err);
         }
       }
     );
   } catch (err) {
-    console.log(err)
+    console.log(err);
     res.status(404).end();
   }
 }
