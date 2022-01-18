@@ -8,7 +8,7 @@ type Data = {
 };
 export default async function (req: NextApiRequest, res: NextApiResponse<any>) {
   const { pid } = req.query;
-  const filePath = `./public/posts/post${pid}.md`;
+  const filePath = `./posts/post${pid}.md`;
   const encoding = 'utf8';
 
   console.log(`pid: ${pid}, filePath: ${filePath}, encoding: ${encoding}`);
