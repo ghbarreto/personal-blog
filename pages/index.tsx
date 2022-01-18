@@ -68,7 +68,7 @@ Home.getInitialProps = async ({ req }) => {
   // http://localhost:3000/api/fetch_posts
   // ${protocol}${host}/api/fetch_posts`
   try {
-    const { data } = await axios.get(`${protocol}${host}/api/fetch_posts`);
+    const { data } = await axios.get(`http://localhost:3000/api/fetch_posts`);
     return {
       value: data,
     };

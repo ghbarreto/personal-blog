@@ -6,12 +6,13 @@ import { marked } from 'marked';
 type Data = {
   name: string;
 };
-export default async function (req: NextApiRequest, res: NextApiResponse<any>) {
+export default function (req: NextApiRequest, res: NextApiResponse<any>) {
+  console.log(req)
   const { pid } = req.query;
-  const filePath = `/posts/post${pid}.md`;
+  const filePath = `${process.cwd()}/posts/post${pid}.md`;
   const encoding = 'utf8';
 
-  console.log(`pid: ${pid}, filePath: ${filePath}, encoding: ${encoding}`);
+  console.log(`pid: ${pid}, filePath: ${filePath}, encoding: ${encoding}, process: ${process.cwd()}`);
 
   if (!pid) return;
 
@@ -20,8 +21,11 @@ export default async function (req: NextApiRequest, res: NextApiResponse<any>) {
     encoding,
     (err: NodeJS.ErrnoException | null, data: any) => {
       if (err) console.log(err);
-      if (!err || data !== undefined) console.log(`data: ${data}`);
-      return res.status(200).send(marked(data.toString()));
+      if (!err || data !== undefined) {
+        // console.log(`data: ${data}`);
+
+        return res.status(200).send(marked(data.toString()));
+      }
     }
   );
 }

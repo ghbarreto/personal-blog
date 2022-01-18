@@ -44,7 +44,11 @@ export const PostContextProvider: React.FC<Props> = ({ children }: Props) => {
 
   const retrieveCategory = () => {
     if (!Object.values(posts)) return null;
-    return posts.reduce((a, { category }) => [...a, ...category], []);
+    try {
+      return posts.reduce((a, { category }) => [...a, ...category], []);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const selectCategory = (category: string) => {
@@ -64,7 +68,7 @@ export const PostContextProvider: React.FC<Props> = ({ children }: Props) => {
           return checkIfInArray ? post : [];
         }),
         postSelected: _.map(posts, (post: Post['post']) => {
-          const checkPost = chosenPost && chosenPost === post.id
+          const checkPost = chosenPost && chosenPost === post.id;
           return checkPost && post;
         }),
         addingPosts,

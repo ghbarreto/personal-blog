@@ -32,7 +32,6 @@ const PostId: NextPage<Values> = ({ value, open, fromLanding }) => {
     const request = async () => {
       try {
         const { data } = await axios.get(`/api/post/${router.query.posts}`);
-        console.log('daaaaaaaaaaaata', data);
         chosenPostFunction(router.query.posts);
         return setPostContent(data);
       } catch (err) {
