@@ -6,10 +6,7 @@ const md = require('markdown-it')();
 type Data = {
   name: string;
 };
-export default function (
-  req: NextApiRequest,
-  res: NextApiResponse<Data>
-) {
+export default function (req: NextApiRequest, res: NextApiResponse<Data>) {
   const { pid } = req.query;
   const filePath = `./posts/post${pid}.md`;
   const encoding = 'utf8';
@@ -20,10 +17,12 @@ export default function (
   const file = fs.readFile(
     filePath,
     encoding,
-    (err: NodeJS.ErrnoException | null, data: string) => {
+    (err: NodeJS.ErrnoException | null, data: any) => {
       try {
-        if (!err || data !== undefined) console.log(`data: ${data}`);
-        return res.status(200).send(md.render(data));
+        if (!err || data !== undefined) {
+          console.log(`data: ${data}`);
+          return res.status(200).send(md.render(data));
+        }
       } catch (err) {
         if (err) return console.log(err);
       }
