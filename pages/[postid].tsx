@@ -10,7 +10,7 @@ import PostHeader from '../components/common/PostHeader';
 import { helperBackground } from '../styles/utilities';
 import { Post } from '../types/types';
 import DateFormat from '../components/common/DateFormat';
-import PostBody from '../components/common/PostBody'
+import PostBody from '../components/common/PostBody';
 
 interface Req {
   params?: (string | number | object | undefined)[] | undefined;
@@ -27,13 +27,12 @@ const PostId: NextPage<Values> = ({ value, open, fromLanding }) => {
   const [postContent, setPostContent] = useState<string>('');
   const router = useRouter();
 
-  console.log('posts selected' + postSelected);
-
   useEffect(() => {
     if (!router.query.posts || router.query.posts === undefined) return;
     const request = async () => {
       try {
         const { data } = await axios.get(`/api/post/${router.query.posts}`);
+        console.log('daaaaaaaaaaaata', data);
         chosenPostFunction(router.query.posts);
         return setPostContent(data);
       } catch (err) {
@@ -45,42 +44,31 @@ const PostId: NextPage<Values> = ({ value, open, fromLanding }) => {
   }, [open, router.query.posts, chosenPostFunction]);
 
   if (!postSelected) return <div>{() => router.push('/')}</div>;
-  
-  console.log("postSelect inside [postid]" + postSelected)
 
-  return (
-    <>
-      {fromLanding ? (
-          <ReactModal open={open} path={() => router.push('/')}>
-            <div style={{ color: 'black' }}>
-              {postSelected &&
-                _.map(postSelected, (post: Post, index: number) => {
-                  if (Number(index) > 2) index -= index;
-                  if (!post) return;
-                  return (
-                    <>
-                      <PostHeader
-                        title={post.title}
-                        color={helperBackground(index)}
-                        date={<DateFormat fontSize="23px" date={post.date} />}
-                        categories={post.category}
-                      />
-                      <PostBody postBody={postContent} subtitle={post.subtitle}/>
-                    </>
-                  );
-                })}
-            </div>
-          </ReactModal>
-      ) : (
-        <ReactModal open path={() => router.push('/')}>
-          <div style={{ color: 'black' }}>
-            qwepoqwekqowkepoqwked
-            <div dangerouslySetInnerHTML={{ __html: postContent }}></div>
-          </div>
-        </ReactModal>
-      )}
-    </>
+  const displayBlogPost = () => (
+    <ReactModal open={open} path={() => router.push('/')}>
+      <div style={{ color: 'black' }}>
+        {postSelected &&
+          _.map(postSelected, (post: Post, index: number) => {
+            if (Number(index) > 2) index -= index;
+            if (!post) return;
+            return (
+              <div key={post.id}>
+                <PostHeader
+                  title={post.title}
+                  color={helperBackground(index)}
+                  date={<DateFormat fontSize="23px" date={post.date} />}
+                  categories={post.category}
+                />
+                <PostBody postBody={postContent} subtitle={post.subtitle} />
+              </div>
+            );
+          })}
+      </div>
+    </ReactModal>
   );
+
+  return fromLanding ? displayBlogPost() : displayBlogPost();
 };
 
 export default PostId;

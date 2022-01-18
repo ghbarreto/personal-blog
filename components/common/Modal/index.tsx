@@ -14,8 +14,8 @@ const customStyle = {
   },
   content: {
     borderRadius: 50,
-    "overflow-x": 'hidden',
-    "::-webkit-scrollbar": {
+    "overflowX": 'hidden',
+    "::WebkitScrollbar": {
       width: '10px'
     }
   },

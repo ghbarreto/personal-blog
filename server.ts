@@ -18,3 +18,5 @@ app.prepare().then(() => {
     console.log(`> Ready on http://localhost:${PORT}`);
   });
 });
+
+export default undefined

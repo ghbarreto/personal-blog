@@ -17,7 +17,7 @@ const Home: NextPage<Values> = ({ value }) => {
   const { addingPosts } = useContext(PostContext);
   const [hover, setHover] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
-  console.log('value', value);
+
   useEffect(() => {
     if (!value) setLoading(true);
     if (value) {
@@ -25,7 +25,7 @@ const Home: NextPage<Values> = ({ value }) => {
       setLoading(false);
     }
   }, [value, addingPosts]);
-
+  console.log(value)
   return (
     <>
       <Head>
@@ -65,6 +65,8 @@ Home.getInitialProps = async ({ req }) => {
     protocol = 'http://';
   }
 
+  // http://localhost:3000/api/fetch_posts
+  // ${protocol}${host}/api/fetch_posts`
   try {
     const { data } = await axios.get(`${protocol}${host}/api/fetch_posts`);
     return {
