@@ -14,7 +14,6 @@ const Category: React.FC = () => {
     retrieveCategory(),
     (a: string, b: string) => a.toLowerCase() === b.toLowerCase()
   );
-
   return (
     <>
       {

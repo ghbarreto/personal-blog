@@ -64,11 +64,11 @@ Home.getInitialProps = async ({ req }) => {
   if (host && host.indexOf('localhost') > -1) {
     protocol = 'http://';
   }
-
+  // ${protocol}${host}/api/fetch_posts
   // http://localhost:3000/api/fetch_posts
   // ${protocol}${host}/api/fetch_posts`
   try {
-    const { data } = await axios.get(`${protocol}${host}/api/fetch_posts`);
+    const { data } = await axios.get(`http://localhost:3000/api/fetch_posts`);
     return {
       value: data,
     };

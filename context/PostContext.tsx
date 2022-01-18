@@ -43,8 +43,7 @@ export const PostContextProvider: React.FC<Props> = ({ children }: Props) => {
   };
 
   const retrieveCategory = () => {
-    if (Object.values(posts) || !posts) return null;
-    console.log("aaaa")
+    if (!Object.values(posts)) return null;
     return posts.reduce((a, { category }) => [...a, ...category], []);
   };
 
