@@ -6,28 +6,34 @@ const md = require('markdown-it')();
 type Data = {
   name: string;
 };
-export default function (req: NextApiRequest, res: NextApiResponse<Data>) {
-  const { pid } = req.query;
-  const filePath = `./posts/post${pid}.md`;
-  const encoding = 'utf8';
+export default async function (
+  req: NextApiRequest,
+  res: NextApiResponse<Data>
+) {
+  try {
+    const { pid } = req.query;
+    const filePath = `./posts/post${pid}.md`;
+    const encoding = 'utf8';
 
-  console.log(`pid: ${pid}, filePath: ${filePath}, encoding: ${encoding}`);
+    console.log(`pid: ${pid}, filePath: ${filePath}, encoding: ${encoding}`);
 
-  if (!pid) return;
-  const file = fs.readFile(
-    filePath,
-    encoding,
-    (err: NodeJS.ErrnoException | null, data: any) => {
-      try {
-        if (!err || data !== undefined) {
-          console.log(`data: ${data}`);
+    if (!pid) return;
+    const file = fs.readFile(
+      filePath,
+      encoding,
+      (err: NodeJS.ErrnoException | null, data: any) => {
+        try {
+          if (!err || data !== undefined) console.log(`data: ${data}`);
           return res.status(200).send(md.render(data));
+        } catch (err) {
+          if (err) return console.log(err);
         }
-      } catch (err) {
-        if (err) return console.log(err);
       }
-    }
-  );
+    );
+  } catch (err) {
+    console.log(err);
+    res.status(404).end();
+  }
 }
 
 export const config = {
