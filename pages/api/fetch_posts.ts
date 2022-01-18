@@ -1,6 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next';
-import posts from '../../posts/postList.json';
+import posts from '../../public/posts/postList.json';
 import NextCors from 'nextjs-cors';
 
 type Data = {
