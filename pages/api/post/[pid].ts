@@ -15,6 +15,9 @@ export default async function (
     const filePath = `./posts/post${pid}.md`;
     const encoding = 'utf8';
 
+    console.log(`pid: ${pid}, filePath: ${filePath}, encoding: ${encoding}`)
+
+
     if (!pid) return;
     const file = fs.readFile(
       filePath,
@@ -22,6 +25,7 @@ export default async function (
       (err: NodeJS.ErrnoException | null, data: string) => {
         try {
           if (!err || data !== undefined)
+            console.log(`data: ${data}`)
             return res.status(200).send(md.render(data));
         } catch (err) {
           if (err) return console.log(err)
@@ -29,6 +33,7 @@ export default async function (
       }
     );
   } catch (err) {
+    console.log(err)
     res.status(404).end();
   }
 }
