@@ -26,7 +26,7 @@ export default async function (
         try {
           if (!err || data !== undefined)
             console.log(`data: ${data}`)
-            return res.status(200).send(md.render(data));
+            return res.status(200).send(md.render(data.toString()));
         } catch (err) {
           if (err) return console.log(err)
         }
