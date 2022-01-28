@@ -9,7 +9,7 @@ import * as Reusable from '../../styles/Reusable';
 import Footer from '../common/Footer';
 import PostId from '../../pages/[postid]';
 
-const Landing: React.FC = (props) => {
+const Landing: React.FC = () => {
   const router = useRouter();
 
   return (

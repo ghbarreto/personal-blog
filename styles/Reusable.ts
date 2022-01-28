@@ -15,12 +15,17 @@ interface ButtonProps {
   transition?: string | null;
 }
 
-export const Container = styled.body`
+interface ContainerProps {
+  bodyScroll?: boolean;
+}
+
+export const Container = styled.body<ContainerProps>`
   background-color: ${utilities.lightblue};
   height: 100vh;
   font-family: 'Fira Code', monospace;
   color: white;
-`;
+  `;
+  // overflow-y: ${props => props.bodyScroll ? 'hidden' : 'none'};
 
 export const Button = styled.a<ButtonProps>`
   background-color: ${props => props.bgColor || utilities.lightblue};
@@ -32,7 +37,7 @@ export const Button = styled.a<ButtonProps>`
   color: ${props => props.color || 'white'};
   max-width: ${props => props.maxWidth || undefined};
   margin-top: ${props => props.marginTop || undefined};
-  transition: .2s background-color;
+  transition: 0.2s background-color;
 
   &:hover {
     cursor: pointer;
@@ -48,4 +53,4 @@ export const Tags = styled.span<ButtonProps>`
 export const FlexCenter = styled.div`
   display: flex;
   justify-content: center;
-`
+`;

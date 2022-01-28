@@ -1,6 +1,7 @@
 import * as Local from './styles';
 import _ from 'lodash';
 import { AiOutlineClose } from 'react-icons/ai';
+import { useRouter } from 'next/router';
 
 interface Props {
   title: string;
@@ -10,11 +11,16 @@ interface Props {
 }
 
 const PostHeader: React.FC<Props> = ({ title, color, date, categories }) => {
+  const router = useRouter();
+
   const displayCategories = () => {
     return _.map(categories, category => (
       <Local.FormatCategories>{category}</Local.FormatCategories>
     ));
   };
+
+  if (!title || !categories || !date || !color) return <div></div>;
+
   return (
     <Local.Container bgColor={color}>
       <Local.InlineContainer>
@@ -25,7 +31,7 @@ const PostHeader: React.FC<Props> = ({ title, color, date, categories }) => {
             {categories.length > 0 && displayCategories()}
           </div>
         </Local.DisplayInline>
-        <AiOutlineClose size={25} />
+        <AiOutlineClose size={25} onClick={() => router.push('/')} />
       </Local.InlineContainer>
 
       <Local.ContainerTitle>

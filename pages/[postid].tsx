@@ -17,13 +17,12 @@ interface Req {
 }
 
 interface Values extends Req {
-  value?: any;
   open: boolean;
   fromLanding?: boolean;
 }
 
-const PostId: NextPage<Values> = ({ value, open, fromLanding }) => {
-  const { chosenPostFunction, postSelected } = useContext(PostContext);
+const PostId: NextPage<Values> = ({ open, fromLanding }) => {
+  const { chosenPostFunction, postSelected, addingPosts } = useContext(PostContext);
   const [postContent, setPostContent] = useState<string>('');
   const router = useRouter();
 
@@ -39,8 +38,11 @@ const PostId: NextPage<Values> = ({ value, open, fromLanding }) => {
       }
     };
     request();
-    return () => setPostContent('');
-  }, [open, router.query.posts, chosenPostFunction]);
+    return () => {
+      setPostContent('')
+      addingPosts([]);
+    };
+  }, [open, router.query.posts, chosenPostFunction, addingPosts]);
 
   if (!postSelected) return <div>{() => router.push('/')}</div>;
 

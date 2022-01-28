@@ -1,5 +1,6 @@
-import { createContext, useState, useEffect } from 'react';
+import { createContext, useState } from 'react';
 import _ from 'lodash';
+import { useRouter } from 'next/router';
 
 interface Props {
   children?: React.ReactChild;
@@ -21,6 +22,7 @@ export interface PostContextReturn {
   chosenPostFunction: (id: string | string[] | undefined) => void;
   chosenPost: string | number | string[] | undefined;
   postSelected: {};
+  openedPost: boolean;
 }
 
 export const PostContext = createContext<PostContextReturn>(
@@ -32,7 +34,9 @@ export const PostContextProvider: React.FC<Props> = ({ children }: Props) => {
   const [selectedCategory, setSelectedCategory] = useState<string>('');
   const [chosenPost, setChosenPost] = useState<
     number | string | string[] | undefined
-  >();
+    >();
+  const router = useRouter();
+  const openedPost = !!router.query.posts;
 
   const addingPosts = (postsObject: []) => {
     return setPosts(postsObject);
@@ -77,6 +81,7 @@ export const PostContextProvider: React.FC<Props> = ({ children }: Props) => {
         selectedCategory,
         chosenPostFunction,
         chosenPost,
+        openedPost
       }}
     >
       {children}
