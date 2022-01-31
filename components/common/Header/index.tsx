@@ -10,7 +10,7 @@ const Header: React.FC = () => {
   const [postTitle, setPostTitle] = useState('');
   const [displayInput, setDisplayInput] = useState(false);
 
-  const animation = useSpring({
+  const animateSearch = useSpring({
     to: { opacity: 1 },
     from: { opacity: 0 },
   });
@@ -29,7 +29,7 @@ const Header: React.FC = () => {
         <Image src="/logo.png" alt="logo" width={'100px'} height={'100px'} />
         <Styles.SearchInput>
           {displayInput && (
-            <animated.div style={animation}>
+            <animated.div style={animateSearch}>
               <InputField
                 unselectable="on"
                 label="Search Posts"

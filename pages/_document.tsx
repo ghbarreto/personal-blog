@@ -9,12 +9,10 @@ export default function Document() {
           rel="stylesheet"
         />
         <meta name="title" content="Gabriel Barreto's Blog" />
-
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
           href="https://fonts.gstatic.com"
-          crossOrigin=""
         />
         <link
           href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;600;700&display=swap"
@@ -24,32 +22,27 @@ export default function Document() {
           rel="preload"
           href="/fonts/Fira_Code/FiraCode-Bold.ttf"
           as="font"
-          crossOrigin=""
         />
 
         <link
           rel="preload"
           href="/fonts/Fira_Code/FiraCode-Regular.ttf"
           as="font"
-          crossOrigin=""
         />
         <link
           rel="preload"
           href="/fonts/Fira_Code/FiraCode-Medium.ttf"
           as="font"
-          crossOrigin=""
         />
          <link
           rel="preload"
           href="/fonts/Fira_Code/FiraCode-Light.ttf"
           as="font"
-          crossOrigin=""
         />
          <link
           rel="preload"
           href="/fonts/Fira_Code/FiraCode-SemiBold.ttf"
           as="font"
-          crossOrigin=""
         />
       </Head>
       <body>

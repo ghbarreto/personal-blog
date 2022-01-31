@@ -19,11 +19,14 @@ const Home: NextPage<Values> = ({ value }) => {
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
+
     if (!value) setLoading(true);
+    
     if (value) {
       addingPosts(value);
       setLoading(false);
     }
+    
   }, [value, addingPosts]);
 
   return (

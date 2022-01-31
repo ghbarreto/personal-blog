@@ -11,7 +11,6 @@ import PostId from '../../pages/[postid]';
 
 const Landing: React.FC = () => {
   const router = useRouter();
-
   return (
     <>
       <Header />
