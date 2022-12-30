@@ -27,16 +27,17 @@ const PostId: NextPage<Values> = ({ open, fromLanding }) => {
 
     useEffect(() => {
         if (!router.query.posts || router.query.posts === undefined) return;
-        const request = async () => {
+
+        (async () => {
             try {
                 const { data } = await axios.get(`/api/post/${router.query.posts}`);
                 chosenPostFunction(router.query.posts);
                 return setPostContent(data);
             } catch (err) {
-                console.log('errr' + err);
+                console.log('err' + err);
             }
-        };
-        request();
+        })();
+
         return () => {
             setPostContent('');
             addingPosts([]);
@@ -53,7 +54,6 @@ const PostId: NextPage<Values> = ({ open, fromLanding }) => {
                         if (Number(index) > 2) index -= index;
                         if (!post) return;
 
-                        console.log(postSelected);
                         return (
                             <div key={post.id}>
                                 <PostHeader

@@ -31,10 +31,14 @@ export const Tags = styled.span`
 
 const Info: React.FC = () => {
     const { githubInfo } = useContext(PostContext);
-    console.log(githubInfo);
+
     return (
         <Container>
-            {githubInfo && <Image src={githubInfo.avatar} width={'120px'} height={'120px'} alt={'pixel art'} />}
+            {githubInfo ? (
+                <Image src={githubInfo.avatar} width={'120px'} height={'120px'} alt={'g-hub'} />
+            ) : (
+                <div>TODO LOADING</div>
+            )}
             <InfoHeader>
                 <Tags>{'</'}</Tags>Gabriel Barreto <Tags>{'//'}</Tags> Personal Blog
                 <Tags>{'/>'}</Tags>

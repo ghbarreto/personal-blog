@@ -24,7 +24,7 @@ const PortfolioButton = styled(Styled.Button)`
 `;
 
 const Home: NextPage<Values | any> = ({ value }) => {
-    const { addingPosts, openedPost, setGithubInfo } = useContext(PostContext);
+    const { addingPosts, openedPost } = useContext(PostContext);
     const [hover, setHover] = useState<boolean>(false);
 
     useEffect(() => {

@@ -13,7 +13,6 @@ export default function Document() {
                     rel="stylesheet"
                 />
                 <link rel="preload" href="/fonts/Fira_Code/FiraCode-Bold.ttf" as="font" />
-
                 <link rel="preload" href="/fonts/Fira_Code/FiraCode-Regular.ttf" as="font" />
                 <link rel="preload" href="/fonts/Fira_Code/FiraCode-Medium.ttf" as="font" />
                 <link rel="preload" href="/fonts/Fira_Code/FiraCode-Light.ttf" as="font" />
